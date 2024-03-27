@@ -2,8 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum EtapaDelProceso
+{
+    enter,
+    Execute,
+    Exit,
+}
 public class Dormir : State
 {
+    EtapaDelProceso LaEtapa;
     stats LasStats;
 
     void Start()
@@ -18,7 +25,24 @@ public class Dormir : State
     // Update is called once per frame
     void Update()
     {
-        Execute();
+        switch (LaEtapa)
+        {
+            case EtapaDelProceso.enter:
+                {
+
+                }
+                break;
+            case EtapaDelProceso.Execute:
+                {
+                    Execute();
+                }
+                break;
+            case EtapaDelProceso.Exit:
+                {
+
+                }
+                break;
+        }
     }
 
     public override void Enter()
@@ -33,18 +57,7 @@ public class Dormir : State
 
         if (LasStats.sueno == 100)
         {
-            if (LasStats.wc == 0)
-            {
-                m_MachineState.NextState(TypeState.Banno);
-            }
-            else if (LasStats.hambre == 0)
-            {
-                m_MachineState.NextState(TypeState.Comer);
-            }
-            else
-            {
-                m_MachineState.NextState(TypeState.Jugar);
-            }
+            m_MachineState.NextState(TypeState.Jugar);
         }
     }
     public override void Exit()

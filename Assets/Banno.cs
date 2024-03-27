@@ -32,18 +32,7 @@ public class Banno : State
 
         if (LasStats.wc == 100)
         {
-            if (LasStats.hambre == 0)
-            {
-                m_MachineState.NextState(TypeState.Comer);
-            }
-            else if (LasStats.sueno == 0)
-            {
-                m_MachineState.NextState(TypeState.Dormir);
-            }
-            else
-            {
-                m_MachineState.NextState(TypeState.Jugar);
-            }
+            m_MachineState.NextState(TypeState.Jugar);
         }
     }
     public override void Exit()

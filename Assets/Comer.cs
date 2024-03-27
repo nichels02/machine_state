@@ -32,18 +32,7 @@ public class Comer : State
 
         if (LasStats.hambre == 100)
         {
-            if (LasStats.wc == 0)
-            {
-                m_MachineState.NextState(TypeState.Banno);
-            }
-            else if (LasStats.sueno == 0)
-            {
-                m_MachineState.NextState(TypeState.Dormir);
-            }
-            else
-            {
-                m_MachineState.NextState(TypeState.Jugar);
-            }
+            m_MachineState.NextState(TypeState.Jugar);
         }
     }
     public override void Exit()
