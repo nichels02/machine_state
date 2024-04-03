@@ -4,22 +4,19 @@ using UnityEngine;
 
 public class Comer : State
 {
-    stats LasStats;
+     
     void Start()
     {
-        LasStats = GetComponent<stats>();
         LoadComponent();
     }
     public override void LoadComponent()
     {
         base.LoadComponent();
+        type = TypeState.Comer;
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        Execute();
-    }
+     
     public override void Enter()
     {
 

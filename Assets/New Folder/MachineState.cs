@@ -5,7 +5,6 @@ using TMPro;
 
 public class MachineState : MonoBehaviour
 {
-    [SerializeField] TMP_Text TEXTO;
     public State CurrentState;
     public State []m_States;
     public TypeState stateDefaul;
@@ -21,7 +20,6 @@ public class MachineState : MonoBehaviour
                     item.enabled = true;
 
                     CurrentState = item;
-                    TEXTO.text = "" + CurrentState.type;
             }
             else
             {
@@ -44,7 +42,6 @@ public class MachineState : MonoBehaviour
                     CurrentState = item;
                     CurrentState.enabled=true;
                     CurrentState.Enter();
-                    TEXTO.text = "" + CurrentState.type;
                 }
                    
             }
@@ -58,5 +55,9 @@ public class MachineState : MonoBehaviour
             item.enabled = false;
         }
     }
-
+    private void Update()
+    {
+        if (CurrentState != null)
+            CurrentState.Execute();
+    }
 }

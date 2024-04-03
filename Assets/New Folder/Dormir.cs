@@ -11,39 +11,38 @@ public enum EtapaDelProceso
 public class Dormir : State
 {
     EtapaDelProceso LaEtapa;
-    stats LasStats;
-
+     
     void Start()
     {
-        LasStats = GetComponent<stats>();
         LoadComponent();
     }
     public override void LoadComponent()
     {
         base.LoadComponent();
+        type = TypeState.Dormir;
     }
     // Update is called once per frame
-    void Update()
-    {
-        switch (LaEtapa)
-        {
-            case EtapaDelProceso.enter:
-                {
+    //void Update()
+    //{
+    //    switch (LaEtapa)
+    //    {
+    //        case EtapaDelProceso.enter:
+    //            {
 
-                }
-                break;
-            case EtapaDelProceso.Execute:
-                {
-                    Execute();
-                }
-                break;
-            case EtapaDelProceso.Exit:
-                {
+    //            }
+    //            break;
+    //        case EtapaDelProceso.Execute:
+    //            {
+    //                Execute();
+    //            }
+    //            break;
+    //        case EtapaDelProceso.Exit:
+    //            {
 
-                }
-                break;
-        }
-    }
+    //            }
+    //            break;
+    //    }
+    //}
 
     public override void Enter()
     {

@@ -6,9 +6,11 @@ public class State : MonoBehaviour
 {
     public TypeState type;
     public MachineState m_MachineState;
+    public stats LasStats;
     public virtual void LoadComponent()
     {
         m_MachineState = GetComponent<MachineState>();
+        LasStats = GetComponent<stats>();
     }
     public virtual void Enter( )
     {
