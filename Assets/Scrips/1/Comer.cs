@@ -19,10 +19,10 @@ public class Comer : State
      
     public override void Enter()
     {
-        print("1");
+        //print("1");
         if (EstaInvertido)
         {
-            print("2");
+            //print("2");
             ReverseArray();
             EstaInvertido = false;
             
@@ -32,18 +32,20 @@ public class Comer : State
             RecienEmpezo = false;
             ElPathFollowing.currentPointIndex = 0;
             ElPathFollowing.ListaDeTransforms = ListaDeMovimiento;
+            ElArrive.Finalizo = false;
         }
 
-        print("3");
+        //print("3");
         
         ElPathFollowing.NextPoint();
-        ElArrive.Finalizo = false;
+        
         if (ElArrive.Finalizo)
         {
             print("4");
             Etapa = EtapaState.Execute;
+            RecienEmpezo = true;
         }
-        print("5");
+        //print("5");
 
     }
     public override void Execute()
@@ -66,17 +68,19 @@ public class Comer : State
             EstaInvertido = true;
             
         }
-        if (!RecienEmpezo)
+        if (RecienEmpezo)
         {
-            RecienEmpezo = true;
+            RecienEmpezo = false;
             ElPathFollowing.ListaDeTransforms = ListaDeMovimiento;
-            ElPathFollowing.currentPointIndex = ElPathFollowing.ListaDeTransforms.Length;
+            ElPathFollowing.currentPointIndex = ElPathFollowing.ListaDeTransforms.Length - 1;
+            ElArrive.Finalizo = false;
         }
-        ElArrive.Finalizo = false;
+        
         ElPathFollowing.NextPoint();
         if (ElArrive.Finalizo)
         {
             m_MachineState.NextState(TypeState.Jugar);
+            RecienEmpezo = true;
         }
     }
 }

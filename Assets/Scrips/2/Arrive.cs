@@ -19,16 +19,16 @@ public class Arrive : MonoBehaviour
         {
             if (target != null)
             {
-                print(target.gameObject.name);
+                //print("el punto es "+target.gameObject.name);
             }
             else
             {
-                print("es nulo");
+                //print("es nulo");
             }
             
             // Calcula la dirección hacia el objetivo
             Vector3 targetDirection = target.position - transform.position;
-            print("avanza2");
+            //print("avanza2");
             // Calcula la distancia al objetivo
             float distance = targetDirection.magnitude;
             

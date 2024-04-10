@@ -41,34 +41,45 @@ public class PathFollowing : MonoBehaviour
     {
         currentPoints = pathPoints[0];
     }
-    public bool NextPoint()
+    public void NextPoint()
     {
-        if (Vector3.Distance(transform.position, ListaDeTransforms[currentPointIndex].position) < arrivalDistance)
+        if (currentPointIndex > ListaDeTransforms.Length-1 && !ElJugador.CurrentState.EstaInvertido)
+        {
+            print("termino");
+            Elsegidor.Finalizo = true;
+        }
+        else if (currentPointIndex < 0 && ElJugador.CurrentState.EstaInvertido)
+        {
+            print("termino");
+            Elsegidor.Finalizo = true;
+        }
+
+        else if (!Elsegidor.Finalizo && Vector3.Distance(transform.position, ListaDeTransforms[currentPointIndex].position) < arrivalDistance)
         {
             // Avanzar al siguiente punto de la ruta
+            
+            
             if (ElJugador.CurrentState.EstaInvertido)
             {
-                currentPointIndex = currentPointEstado - 1;
+                currentPointIndex--;
+                Elsegidor.target = ListaDeTransforms[currentPointIndex];
                 print("salida");
             }
             else
             {
                 print("entrada");
-                currentPointIndex = currentPointEstado + 1;
-            }
-            if(currentPointIndex>ListaDeTransforms.Length)
-            {
-                Elsegidor.Finalizo = true;
-            }
-
-
-            return true;
-        }
-        else
-        {
-            if (Elsegidor.Finalizo == false)
+                currentPointIndex++;
                 Elsegidor.target = ListaDeTransforms[currentPointIndex];
-            return false;
+            }
+
+
+            
+        }
+        else if(!Elsegidor.Finalizo)
+        {
+            Elsegidor.target = ListaDeTransforms[currentPointIndex];
+            
+
         }
     }
 
