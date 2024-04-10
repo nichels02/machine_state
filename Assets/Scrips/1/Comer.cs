@@ -71,8 +71,8 @@ public class Comer : State
         if (RecienEmpezo)
         {
             RecienEmpezo = false;
+            ElPathFollowing.currentPointIndex = 0;
             ElPathFollowing.ListaDeTransforms = ListaDeMovimiento;
-            ElPathFollowing.currentPointIndex = ElPathFollowing.ListaDeTransforms.Length - 1;
             ElArrive.Finalizo = false;
         }
         
