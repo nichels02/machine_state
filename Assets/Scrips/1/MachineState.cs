@@ -41,7 +41,7 @@ public class MachineState : MonoBehaviour
 
                     CurrentState = item;
                     CurrentState.enabled=true;
-                    CurrentState.Enter();
+                    CurrentState.Etapa = EtapaState.Enter;
                 }
                    
             }
@@ -58,6 +58,26 @@ public class MachineState : MonoBehaviour
     private void Update()
     {
         if (CurrentState != null)
-            CurrentState.Execute();
+        {
+            switch (CurrentState.Etapa)
+            {
+                case EtapaState.Enter:
+                    {
+                        CurrentState.Enter();
+                    }
+                    break;
+                case EtapaState.Execute:
+                    {
+                        CurrentState.Execute();
+                    }
+                    break;
+                case EtapaState.Exit:
+                    {
+                        CurrentState.Exit();
+                    }
+                    break;
+            }
+        }
+            
     }
 }
